@@ -1,0 +1,18 @@
+name: Testing a .NET project
+run-name: ${{ github.actor }} is testing a .NET project
+on: push
+jobs:
+    build_and_test_job:
+        name: Build and Test .NET
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+            - name: Restore NuGet dependencies
+              run: dotnet restore
+            - name: Build solution
+              run: dotnet build
+            - name: Run tests
+              run: dotnet test
